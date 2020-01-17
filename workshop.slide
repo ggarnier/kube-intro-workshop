@@ -1,21 +1,14 @@
-Kubernetes Intro
-Workshop
+Kubernetes Intro Workshop
 
-Cezar Sá
-@cezarsa
-Globo.com / tsuru
-
-Guilherme Rezende
-@gbrezende
-Globo.com / tsuru
+Guilherme Garnier
 
 * Requirements
 .html images/style.html
 
 This presentation and the code we are going to use is available at:
 
-[[https://github.com/cezarsa/kube-intro-workshop]]
-[[https://go-talks.appspot.com/github.com/cezarsa/kube-intro-workshop/workshop.slide]]
+[[https://github.com/ggarnier/kube-intro-workshop]]
+[[https://go-talks.appspot.com/github.com/ggarnier/kube-intro-workshop/workshop.slide]]
 
 We'll need:
 
@@ -25,7 +18,7 @@ We'll need:
 * Setup
 
 - Installing Minikube
-  
+
 [[https://github.com/kubernetes/minikube#installation]]
 
 - Installing Kubectl
@@ -35,7 +28,7 @@ We'll need:
 * What is Kubernetes
 
 When people hear about kubernetes one of the first definitions that come to
-mind is: 
+mind is:
 
 "Kubernetes is a container orchestrator."
 
@@ -151,7 +144,7 @@ Containers in the same pod:
 * Pods - what happened?
   -
                     +------+
-                    | etcd | 
+                    | etcd |
                     +---^--+
                         |
                     +------------------------------------+
@@ -174,22 +167,22 @@ Containers in the same pod:
                     +------------------------------------+
 
 * Pods - what happened?
-  1 - kubectl    -> api-server: 
+  1 - kubectl    -> api-server:
     I want to create a Pod.
 
-  2 - api-server -> etcd: 
+  2 - api-server -> etcd:
     Hey etcd, please store this new pod.
 
-  3 - api-server -> scheduler: 
+  3 - api-server -> scheduler:
     Hi scheduler, you asked to be notified on new pods, here is a new one.
 
-  4 - scheduler  -> api-server: 
+  4 - scheduler  -> api-server:
     Thanks, I can see this pod has no Node yet, I've chosen one and updated this Pod.
 
-  5 - api-server -> kubelet: 
+  5 - api-server -> kubelet:
     Hey kubelet, you asked to be notified when a pod is updated, here is this one.
 
-  6 - kubelet    -> api-server: 
+  6 - kubelet    -> api-server:
     Oh thanks, I can see this pod was supposed to be running on my node.
     I've just started it and updated the Pod status.
 
@@ -576,7 +569,7 @@ Effects can be:
 * Hands on: Taints/Tolerations
 
   $ kubectl taint node minikube mytaint=myvalue:NoSchedule
-  $ kubectl apply -f ./labs/pod-toleration.yaml 
+  $ kubectl apply -f ./labs/pod-toleration.yaml
   $ ... error ...
   $ ... modify the pod to add a toleration ...
   $ kubectl apply -f ./labs/pod-toleration.yaml
@@ -627,7 +620,7 @@ A kubernetes cluster includes its own dns server. It can either be known as `kub
 The default resolver for any created pod points to the internal DNS server and it is responsible for also forwarding DNS queries to outside the cluster.
 
 An internal DNS entry is created for each service usually as:
-  
+
   <service name>.<namespace>.svc.cluster.local A <Service Cluster IP>
 
 * Hands on: DNS entries
