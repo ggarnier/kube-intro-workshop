@@ -206,6 +206,10 @@ Containers in the same pod:
     Oh thanks, I can see this pod was supposed to be running on my node.
     I've just started it and updated the Pod status.
 
+* Pod with 2 containers
+
+.code labs/pod-with-two-containers.yaml /START OMIT/,/END OMIT/
+
 * ConfigMap
 
 Config maps are objects used to store configuration and make this configuration available for pods to use.
