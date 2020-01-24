@@ -81,6 +81,26 @@ The *control* *plane* is responsible for storing these objects and doing somethi
 
 `kubectl` is a CLI that can talk to the Kubernetes API in a user friendly way.
 
+  kubectl get <resource>
+    -o wide / yaml / json
+    -l app=myapp,env=staging
+    --field-selector status.phase=ContainerCreating
+    -n mynamespace / -A (= --all-namespaces)
+    --show-labels
+    -L app,env
+    -w (= --watch)
+
+  # verbose mode, useful for debugging
+  kubectl -v=8 get <resource>
+
+  # documentation for resource fields
+  kubectl explain pod.spec.containers
+
+  # create/update resources
+  kubectl create/apply -f file.yaml
+
+More info: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
 * Concepts (YAML)
 
 Usually YAML files are used to represent a Kubernetes object, example:
