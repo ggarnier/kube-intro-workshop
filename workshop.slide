@@ -378,6 +378,14 @@ ReplicaSet controller
 
 : Clarify this is an overly simplified explanation
 
+* Updating Deployments
+
+.image images/deployment-v1.png _ 500
+
+* Updating Deployments
+
+.image images/deployment-v2.png _ 900
+
 * Rolling updates
 
 Deployments ensure that a number of replica pods are always available.
