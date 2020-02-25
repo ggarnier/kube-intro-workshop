@@ -99,6 +99,9 @@ The *control* *plane* is responsible for storing these objects and doing somethi
   # create/update resources
   kubectl create/apply -f file.yaml
 
+  # update resource using your default editor
+  kubectl edit <resource> <name>
+
 More info: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 * Concepts (YAML)

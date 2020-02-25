@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: logging
+  namespace: lab
   labels:
     app: logging
 spec:
