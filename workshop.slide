@@ -251,6 +251,10 @@ By default every cluster is born with 2 important namespaces:
 
 .code labs/service.yaml
 
+* Selectors
+
+.image images/selectors.png _ 800
+
 * Service and Endpoint
 
 - The selector is very important here, it selects which pods belong to this service based on Pod labels;
