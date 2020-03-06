@@ -42,6 +42,7 @@ This presentation and the code we are going to use is available at:
 [[https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41684.pdf]]
 
 *2014:* *Kubernetes* released
+[[https://cloudplatform.googleblog.com/2014/06/an-update-on-container-support-on-google-cloud-platform.html]]
 
 * What is Kubernetes
 
@@ -67,17 +68,14 @@ It knows:
 : Ask if the audience is familiar with the concept of plain docker containers
 : and basic explanation if needed.
 
-* What is Kubernetes
+* Architecture overview
 
-There is more.
+Resources created on the API describe the *desired* state.
 
-A better way to think of kubernetes is as a state machine.
+The Control Plane is responsible for making the *desired* state a reality.
 
-It keeps trying to change the real world (nodes, containers, networks) to make
-it match a set of definitions.
-
-It *never* stops trying as external factors can change the real world state at
-any time.
+.image images/kubernetes-control-plane.png _ 700
+.caption By [[https://docs.google.com/presentation/d/1Gp-2blk5WExI_QR59EUZdwfO2BWLJqa626mK2ej-huo/edit#slide=id.g1e639c415b_0_56][Lucas Käldström]]
 
 * Concepts
 
@@ -95,9 +93,7 @@ Basic objects:
 
 The *control* *plane* is responsible for storing these objects and doing something with them.
 
-* Concepts
-
-`kubectl` is a CLI that can talk to the Kubernetes API in a user friendly way.
+* kubectl
 
   kubectl get <resource>
     -o wide / yaml / json
@@ -120,9 +116,9 @@ The *control* *plane* is responsible for storing these objects and doing somethi
   # update resource using your default editor
   kubectl edit <resource> <name>
 
-More info: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+More info: [[https://kubernetes.io/docs/reference/kubectl/cheatsheet/]]
 
-* Concepts (YAML)
+* YAML
 
 Usually YAML files are used to represent a Kubernetes object, example:
 
@@ -131,6 +127,7 @@ Usually YAML files are used to represent a Kubernetes object, example:
 
   metadata:
     name: mypod
+    namespace: lab
     labels:
     annotations:
 
@@ -142,15 +139,6 @@ Usually YAML files are used to represent a Kubernetes object, example:
   status:
 
 These 4 blocks are common for almost all Kubernetes objects.
-
-* Control Plane: Master and Nodes
-
-Resources created on the API describe the *desired* state.
-
-The Control Plane is responsible for making the *desired* state a reality.
-
-.image images/kubernetes-control-plane.png _ 700
-.caption By [[https://docs.google.com/presentation/d/1Gp-2blk5WExI_QR59EUZdwfO2BWLJqa626mK2ej-huo/edit#slide=id.g1e639c415b_0_56][Lucas Käldström]]
 
 * Pods
 
