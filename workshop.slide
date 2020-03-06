@@ -675,6 +675,41 @@ Object specification similar to Deployments
   $ kubectl get daemonset
   $ kubectl get pods
 
+* Secrets
+
+* Secrets
+
+Secrets are much like ConfigMaps, but they let you store sensitive information
+
+  $ cat data.env
+  username=admin
+  password=s3cr3t0
+  $ kubectl create secret generic db-user-pass \
+        --from-env-file=./data.env
+
+  # decoding
+  $ kubectl get secret db-user-pass -o yaml
+  data:
+    password: czNjcjN0MA==
+    username: YWRtaW4=
+  ...
+  $ echo "YWRtaW4=" | base64 --decode
+  admin
+
+* Secrets
+
+Using a secret on a pod: mounting a volume
+
+.code labs/pod-secret-volume.yaml
+
+* Secrets
+
+Using a secret on a pod: setting env vars
+
+.code labs/pod-secret-env.yaml
+
+* Volumes
+
 * Volumes
 
 Volumes allow exposing external volumes to containers.
@@ -702,7 +737,6 @@ External volumes can be:
 * Much, much more
 
 - StatefulSet
-- Secret
 - Job
 - CronJob
 - RBAC
