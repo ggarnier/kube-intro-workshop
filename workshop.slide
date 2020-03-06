@@ -33,6 +33,16 @@ This presentation and the code we are going to use is available at:
 - "Kubernetes in Action" book
 [[https://www.manning.com/books/kubernetes-in-action]]
 
+* History
+
+*2003-2004:* Birth of *Borg* inside Google
+[[https://research.google/pubs/pub43438/]]
+
+*2013:* *Borg* -> *Omega*
+[[https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41684.pdf]]
+
+*2014:* *Kubernetes* released
+
 * What is Kubernetes
 
 When people hear about kubernetes one of the first definitions that come to
