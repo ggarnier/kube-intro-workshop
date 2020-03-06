@@ -413,39 +413,6 @@ Rolling update allow us to configure how deployments are updated ensuring it nev
   $ kubectl apply -f ./labs/deployment-rolling.yaml
   $ kubectl rollout status deployment/rolling-deployment
 
-* Manipulating objects
-
-* Imperative vs Declarative
-
-The `kubectl` client provides two different ways of interacting with cluster objects.
-
-- Imperative
-- Declarative
-
-.image images/imp-vs-dec.png _ 800
-.caption From [[https://kubernetes.io/docs/concepts/overview/object-management-kubectl/overview/][Kubernetes docs]]
-
-* Imperative commands
-
-- kubectl `run`
-- kubectl `create`
-- kubectl `replace`
-- kubectl `delete`
-
-Your yaml file must contain the full description. Every update, including status updates, must be persisted in your yaml file.
-
-This can be a problem when kubernetes itself manipulate the object spec. (e.g. load balancer services with external IPs, horizontal pod autoscaler manipulating replicas)
-
-* Declarative commands
-
-- kubectl `apply`
-
-Running `apply` will compare the provided YAML file to the object currently living in kubernetes and issue a PATCH request with the necessary changes.
-
-Provides tooling to automatically managing directories containing YAML files, creating, patching or deleting as necessary.
-
-However, can make debugging harder as it's not always obvious how the diff and patching will work.
-
 * Pod topics
 
 * Pod topics
