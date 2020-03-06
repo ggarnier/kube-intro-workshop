@@ -10,20 +10,28 @@ This presentation and the code we are going to use is available at:
 [[https://github.com/ggarnier/kube-intro-workshop]]
 [[https://go-talks.appspot.com/github.com/ggarnier/kube-intro-workshop/workshop.slide]]
 
-We'll need:
-
-- Minikube - For running a local kubernetes cluster
-- Kubectl - For interacting with the kubernetes cluster
-
 * Setup
 
-- Installing Minikube
-
-[[https://github.com/kubernetes/minikube#installation]]
-
-- Installing Kubectl
+- Kubectl - CLI for interacting with the Kubernetes cluster
 
 [[https://kubernetes.io/docs/tasks/tools/install-kubectl/]]
+
+- Minikube or Microk8s - to run a local Kubernetes cluster
+
+[[https://github.com/kubernetes/minikube#installation]]
+[[https://microk8s.io/]]
+
+- Katacoda, Play with Kubernetes - playgrounds
+[[https://www.katacoda.com/courses/kubernetes/playground]]
+[[https://labs.play-with-k8s.com/]]
+
+* Learning
+
+- Official docs
+[[https://kubernetes.io/docs/home/]]
+
+- "Kubernetes in Action" book
+[[https://www.manning.com/books/kubernetes-in-action]]
 
 * What is Kubernetes
 
@@ -752,7 +760,6 @@ External volumes can be:
 * Much, much more
 
 - StatefulSet
-- ConfigMap
 - Secret
 - Job
 - CronJob
