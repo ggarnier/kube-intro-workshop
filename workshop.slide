@@ -147,7 +147,7 @@ These 4 blocks are common for almost all Kubernetes objects.
 Similar to docker containers, except one pod can contain more than one container.
 
 Containers in the same pod:
-- Are scheduled on the same machine;
+- Are scheduled on the same node;
 - Share the Network namespace (same IP);
 - Share volumes assigned to the Pod.
 
@@ -454,7 +454,6 @@ However, can make debugging harder as it's not always obvious how the diff and p
 - QoS Class
 - Liveness/Readiness probes
 - Restart policy
-- Sidecar pattern
 - Affinity
 
 * Resource requests and limits
@@ -543,28 +542,6 @@ There are three types of probes:
   $ kubectl explain pod.spec.containers.livenessProbe.exec
   $ kubectl explain pod.spec.containers.livenessProbe.tcpSocket
   $ kubectl explain pod.spec.containers.livenessProbe.httpGet
-
-* Sidecar pattern
-
-So far all of our examples have used a single container on each pod.
-
-This is the most common scenario, however using multiple containers on the same pod can help separating responsibilities when multiple actions must be taken.
-
-There are many examples where this would be useful, like processing logs, or setting up a database.
-
-- Every container on the same pod run on the same node.
-- They also share the same pod IP.
-
-* Sidecar pattern (and volumes preview)
-
-.code labs/pod-sidecar.yaml
-
-* Hands on: Sidecar
-
-  $ kubectl apply -f labs/pod-sidecar.yaml
-  $ kubectl apply -f labs/service-sidecar.yaml
-  $ minikube service list
-
 
 * Let's talk about nodes
 
