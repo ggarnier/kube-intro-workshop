@@ -541,6 +541,36 @@ Nodes as any other object can have metadata as labels and annotations, and some 
 
 : Talk about describe
 
+* Affinity and anti-affinity
+
+Affinities are ways to interact with the scheduler and and change how it's going to work.
+
+With affinities it's possible to say that a pod should only be scheduled on nodes with some specific label.
+On the other hand, it's also possible to say that a pod should *not* be scheduled on a node containting a certain kind of pod.
+
+* Node Affinity
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:              # OR
+          - key: beta.kubernetes.io/arch # AND
+            operator: In
+            values:
+            - amd64
+
+- requiredDuringSchedulingIgnoredDuringExecution (equivalent to `nodeSelector`)
+- preferredDuringSchedulingIgnoredDuringExecution
+
+Also:
+- podAffinity
+- podAntiAffinity
+
+* Hands on: Node Affinity
+
+Let's modify a pod to add a node affinity to it
+
 * Taints and Tolerations
 
 Nodes can have `taints`, taints are a way for telling the scheduler that this node should not be used by a pod unless the pod `tollerates` the specified taint.
@@ -577,36 +607,6 @@ Effects can be:
   $ ... error ...
   $ ... modify the pod to add a toleration ...
   $ kubectl apply -f ./labs/pod-toleration.yaml
-
-* Affinity and anti-affinity
-
-Affinities are ways to interact with the scheduler and and change how it's going to work.
-
-With affinities it's possible to say that a pod should only be scheduled on nodes with some specific label.
-On the other hand, it's also possible to say that a pod should *not* be scheduled on a node containting a certain kind of pod.
-
-* Node Affinity
-
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:              # OR
-          - key: beta.kubernetes.io/arch # AND
-            operator: In
-            values:
-            - amd64
-
-- requiredDuringSchedulingIgnoredDuringExecution
-- preferredDuringSchedulingIgnoredDuringExecution
-
-Also:
-- podAffinity
-- podAntiAffinity
-
-* Hands on: Node Affinity
-
-Let's modify a pod to add a node affinity to it
 
 * Service topics
 
