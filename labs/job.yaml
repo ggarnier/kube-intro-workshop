@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myjob
+  namespace: lab
+spec:
+  template:
+    spec:
+      containers:
+      - name: backup
+        image: busybox
+        command: ["/bin/sh"]
+        args: ["-c", "echo 'running my job...'; [ $RANDOM -ge 16000 ] && exit 1 || exit 0"]
+      restartPolicy: Never
+  backoffLimit: 20  # max retries, default: 6
+  parallelism: 5
+  completions: 4

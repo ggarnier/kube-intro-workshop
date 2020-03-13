@@ -807,10 +807,34 @@ External volumes can be:
       name: shared-data
       mountPath: /mnt/dir
 
+* Jobs
+
+* Jobs
+
+A Job creates one or more Pods and ensures that a specified number of them successfully terminate. The Job completes when a specified number of successful completions is reached.
+
+You can use a Job to run multiple Pods in parallel.
+
+* Jobs
+
+.code labs/job.yaml
+
+* CronJobs
+
+* CronJobs
+
+Allow running a task on a time-based schedule.
+
+One CronJob object is like one line of a crontab (cron table) file. It runs a job periodically on a given schedule, written in Cron format.
+
+* CronJobs
+
+Running a command every minute (`*/1`)
+
+.code labs/cronjob.yaml
+
 * Much, much more
 
-- Job
-- CronJob
 - RBAC
 - PersistentVolume
 - PersistentVolumeClaim
