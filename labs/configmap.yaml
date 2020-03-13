@@ -6,3 +6,4 @@ metadata:
 data:
   index.html: "Hello world!"
   key2: value2
+  appname: myapp

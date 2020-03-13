@@ -231,6 +231,12 @@ Using config maps inside a pod by mounting the config map inside the filesystem.
 
 .code labs/podconfigmap.yaml
 
+* ConfigMap
+
+Using config maps as env vars
+
+.code labs/podconfigmap-env.yaml
+
 * Namespaces
 
 Namespaces can be thought as a way to divide the cluster in multiple sub-clusters.
