@@ -466,24 +466,9 @@ Stress the node to see eviction happening.
 
 * Liveness/Readiness probes
 
-Liveness and readiness probes are ways for kubernetes to verify if a container is running correctly and take some action based on this knowledge.
+Liveness and readiness probes are ways for Kubernetes to verify if a container is running correctly and take some action based on this knowledge.
 
-Both probes run continuously during the lifecycle of a pod.
-
-  readinessProbe:
-    httpGet:
-      path: /healthz
-      port: 8080
-    initialDelaySeconds: 5
-    periodSeconds: 10
-  livenessProbe:
-    httpGet:
-      path: /healthz
-      port: 8080
-    initialDelaySeconds: 15
-    periodSeconds: 20
-
-* Liveness vs Readiness
+Both probes are performed continuously by kubelet during the lifecycle of a pod.
 
 - Readiness
 
@@ -497,9 +482,33 @@ A failing liveness probe will make kubernetes kill the Pod. Depending on the res
 
 There are three types of probes:
 
-- httpGet
-- tcpSocket
-- exec
+- *httpGet*
+
+An HTTP GET request, expects status code 2xx or 3xx
+
+- *tcpSocket*
+
+Performs a TCP check, expects an open port
+
+- *exec*
+
+Runs a custom command in the container, expects exit status 0
+
+* Example
+
+  readinessProbe:
+    httpGet:
+      path: /health
+      port: 8080
+    successThreshold: 2  # default: 1
+    timeoutSeconds: 2  # default: 1
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: 8080
+    initialDelaySeconds: 15
+    periodSeconds: 20  # default: 10
+    failureThreshold: 5  # default: 3
 
 * Hands on: Probes
 
