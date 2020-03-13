@@ -673,7 +673,7 @@ Because a cluster-wide IP address is not created the A DNS entry for the service
 
 Daemon sets are a different kind of controller managed object.
 
-They are useful when we want to ensure the same pod exists on every Node.
+They are useful when we want to ensure the same pod exists on every Node - or nodes that match `spec.template.spec.nodeSelector` or `spec.template.spec.affinity`.
 
 Usage examples are log processing, node metrics collection, node networking configuration.
 
@@ -681,6 +681,11 @@ Usage examples are log processing, node metrics collection, node networking conf
 
   apiVersion: apps/v1
   kind: DaemonSet
+  spec:
+    template:
+      spec:
+        nodeSelector:
+          disktype: ssd
 
 Object specification similar to Deployments
 
