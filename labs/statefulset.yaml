@@ -1,0 +1,40 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: mongodb
+spec:
+  serviceName: mongodb
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: mongodb
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: mongodb
+          image: mongo
+          command:
+            - mongod
+            - "--replSet"
+            - rs0
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-pvc
+              mountPath: /data/db
+        - name: mongodb-sidecar
+          image: cvallance/mongo-k8s-sidecar
+          env:
+            - name: MONGO_SIDECAR_POD_LABELS
+              value: "name=mongodb"
+  volumeClaimTemplates:
+  - metadata:
+      name: mongodb-pvc
+      annotations:
+        volume.beta.kubernetes.io/storage-class: "ssd"
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 40Gi

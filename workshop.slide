@@ -695,6 +695,59 @@ Object specification similar to Deployments
   $ kubectl get daemonset
   $ kubectl get pods
 
+* StatefulSets
+
+* StatefulSets
+
+StatefulSets work similarly to Deployments, but they provide a stable identity to Pods - their identity is kept even if the Pods are rescheduled to other Nodes.
+
+This is useful to run applications like databases, that require stable network identifiers and persistent storage.
+
+* StatefulSets
+
+Each StatefulSet need a previously created Service, to be responsible for the network identify of the Pods:
+
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: mongodb
+    labels:
+      namespace: lab
+      name: mongodb
+  spec:
+    ports:
+    - port: 27017
+      targetPort: 27017
+    selector:
+      name: mongodb
+
+* StatefulSets
+
+  apiVersion: apps/v1beta1
+  kind: StatefulSet
+  metadata:
+    name: mongodb
+  spec:
+    serviceName: mongodb
+    replicas: 3
+    template:
+      metadata:
+        labels:
+          name: mongodb
+      spec:
+        terminationGracePeriodSeconds: 10
+        containers:
+          - name: mongodb
+            image: mongo
+            command:
+              - mongod
+              - "--replSet"
+              - rs0
+            ports:
+              - containerPort: 27017
+            volumeMounts:
+              # ...
+
 * Secrets
 
 * Secrets
@@ -756,7 +809,6 @@ External volumes can be:
 
 * Much, much more
 
-- StatefulSet
 - Job
 - CronJob
 - RBAC
