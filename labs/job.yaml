@@ -10,8 +10,8 @@ spec:
       - name: backup
         image: busybox
         command: ["/bin/sh"]
-        args: ["-c", "echo 'running my job...'; [ $RANDOM -ge 16000 ] && exit 1 || exit 0"]
+        args: ["-c", "echo 'running my job...'; exit $(($RANDOM%2))"]
       restartPolicy: Never
   backoffLimit: 20  # max retries, default: 6
-  parallelism: 5
-  completions: 4
+  parallelism: 3
+  completions: 6

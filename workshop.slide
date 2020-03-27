@@ -518,7 +518,7 @@ Runs a custom command in the container, expects exit status 0
 
 * Hands on: Probes
 
-  $ kubectl apply -f labs/pod-probe.yaml
+  $ kubectl apply -f labs/pod-liveness-probe.yaml
   $ kubectl get pod --watch
 
   $ kubectl explain pod.spec.containers.livenessProbe.exec
@@ -841,4 +841,5 @@ Running a command every minute (`*/1`)
 - StorageClass
 - NetworkPolicy
 - ResourceQuota
+- HorizontalPodAutoscaler
 - ...

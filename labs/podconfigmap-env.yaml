@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mypod
+  name: mypod-cm-env
   namespace: lab
   labels:
     app: myapp
