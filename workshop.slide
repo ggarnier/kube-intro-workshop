@@ -521,7 +521,7 @@ Nodes as any other object can have metadata as labels and annotations, and some 
 
 * Affinity and anti-affinity
 
-Affinities are ways to interact with the scheduler and and change how it's going to work.
+Affinities are ways to interact with the scheduler and change how it's going to work.
 
 With affinities it's possible to say that a pod should only be scheduled on nodes with some specific label.
 On the other hand, it's also possible to say that a pod should *not* be scheduled on a node containting a certain kind of pod.
@@ -551,11 +551,11 @@ Let's modify a pod to add a node affinity to it
 
 * Taints and Tolerations
 
-Nodes can have `taints`, taints are a way for telling the scheduler that this node should not be used by a pod unless the pod `tollerates` the specified taint.
+Nodes can have `taints`, taints are a way for telling the scheduler that this node should not be used by a pod unless the pod `tolerates` the specified taint.
 
 Using this mechanism we can for example make master nodes unschedulable.
 
-It's also useful for debugging a node, no pods will use it except pods made to tollerate it while debugging.
+It's also useful for debugging a node, no pods will use it except pods made to tolerate it while debugging.
 
 * Taints and Tolerations
 
