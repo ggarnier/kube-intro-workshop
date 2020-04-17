@@ -495,7 +495,9 @@ A failing readiness probe causes kubernetes to remove the endpoint for the Pod I
 
 - Liveness
 
-A failing liveness probe will make kubernetes kill the Pod. Depending on the restart policy configuration it will be restarted or not.
+A failing liveness probe will make Kubernetes stop the Pod: depending on the `restartPolicy` configuration, it will be restarted or not.
+
+Failing containers are restarted with an exponential back-off delay. After a few retries, Kubernetes changes the Pod status to `CrashLoopBackOff`.
 
 * Probe types
 
