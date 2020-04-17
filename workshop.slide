@@ -199,6 +199,8 @@ Containers in the same pod:
 
 * ConfigMap
 
+* ConfigMap
+
 Config maps are objects used to store configuration and make this configuration available for pods to use.
 
 .code labs/configmap.yaml
@@ -214,6 +216,39 @@ Using config maps inside a pod by mounting the config map inside the filesystem.
 Using config maps as env vars
 
 .code labs/podconfigmap-env.yaml
+
+* Secrets
+
+* Secrets
+
+Secrets are much like ConfigMaps, but they let you store sensitive information
+
+  $ cat data.env
+  username=admin
+  password=s3cr3t0
+  $ kubectl create secret generic db-user-pass \
+        --from-env-file=./data.env
+
+  # decoding
+  $ kubectl get secret db-user-pass -o yaml
+  data:
+    password: czNjcjN0MA==
+    username: YWRtaW4=
+  ...
+  $ echo "YWRtaW4=" | base64 --decode
+  admin
+
+* Secrets
+
+Using a secret on a pod: mounting a volume
+
+.code labs/pod-secret-volume.yaml
+
+* Secrets
+
+Using a secret on a pod: setting env vars
+
+.code labs/pod-secret-env.yaml
 
 * Namespaces
 
@@ -725,39 +760,6 @@ Each StatefulSet need a previously created Service, to be responsible for the ne
               - containerPort: 27017
             volumeMounts:
               # ...
-
-* Secrets
-
-* Secrets
-
-Secrets are much like ConfigMaps, but they let you store sensitive information
-
-  $ cat data.env
-  username=admin
-  password=s3cr3t0
-  $ kubectl create secret generic db-user-pass \
-        --from-env-file=./data.env
-
-  # decoding
-  $ kubectl get secret db-user-pass -o yaml
-  data:
-    password: czNjcjN0MA==
-    username: YWRtaW4=
-  ...
-  $ echo "YWRtaW4=" | base64 --decode
-  admin
-
-* Secrets
-
-Using a secret on a pod: mounting a volume
-
-.code labs/pod-secret-volume.yaml
-
-* Secrets
-
-Using a secret on a pod: setting env vars
-
-.code labs/pod-secret-env.yaml
 
 * Volumes
 
